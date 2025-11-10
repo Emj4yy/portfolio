@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Header -->
     <header id="header">
         <nav class="navbar">
@@ -21,7 +24,7 @@
                 <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -29,15 +32,18 @@
         </nav>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-content">
             <div class="hero-text">
                 <p class="hero-greeting">Hello, I'm</p>
                 <h1 class="hero-name">Mayrielle Joy Latigo</h1>
-                <h2 class="hero-role">I'm a <span class="typewriter">Web Developer</span></h2>
+                <h2 class="hero-role">I'm a <span class="typewriter">Junior Web Developer</span></h2>
                 <p class="hero-description">
-                    An Information Technology student at Mapúa University with a passion for front-end web development and clean, user-friendly design.
+                    A 3rd Year IT Student at Mapúa University and a proud Lani Scholar. I specialize in Cybersecurity with a passion for front-end web development and creating secure, user-friendly digital experiences.
                 </p>
                 <div class="hero-btns">
                     <a href="#contact" class="btn btn-primary">
@@ -50,13 +56,13 @@
                     </a>
                 </div>
                 <div class="hero-socials">
-                    <a href="https://github.com/Emj4yy" class="social-icon" target="_blank">
+                    <a href="https://github.com/Emj4yy" class="social-icon" target="_blank" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:mayriellej@gmail.com" class="social-icon">
+                    <a href="mailto:mayriellej@gmail.com" class="social-icon" aria-label="Email">
                         <i class="far fa-envelope"></i>
                     </a>
-                    <a href="http://linkedin.com/in/mayrielle-joy-latigo-979012379" class="social-icon" target="_blank">
+                    <a href="http://linkedin.com/in/mayrielle-joy-latigo-979012379" class="social-icon" target="_blank" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -92,10 +98,6 @@
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
                             <span>mayriellej@gmail.com</span>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-phone"></i>
-                            <span>09193364858</span>
                         </div>
                     </div>
                 </div>
@@ -161,7 +163,7 @@
                 <i class="fas fa-code"></i>
                 <h3>Portfolio Projects Coming Soon</h3>
                 <p>Currently working on exciting web development projects to showcase my skills.</p>
-                <a href="https://github.com/Emj4yy" class="btn btn-primary" target="_blank" style="margin-top: 1rem; display: inline-flex;">
+                <a href="https://github.com/Emj4yy" class="btn btn-primary" target="_blank">
                     <i class="fab fa-github"></i>
                     Visit My GitHub
                 </a>
@@ -182,7 +184,8 @@
                         <span class="date">2023 - Present</span>
                         <h3>Bachelor of Science in Information Technology</h3>
                         <h4>Mapúa University</h4>
-                        <p>GPA: 1.49</p>
+                        <p>GPA: 1.46</p>
+                        <p>Consistent Dean's Lister</p>
                         <p>Focusing on Web Development and Software Engineering</p>
                     </div>
                 </div>
@@ -227,68 +230,63 @@
         </div>
     </section>
 
-
-<!-- Contact Section -->
-<section id="contact" class="section contact-section reveal">
-    <div class="container">
-        <h2 class="section-title">Contact Me</h2>
-        <div class="contact-center">
-            <div class="contact-card">
-                <div class="contact-details">
-                    <h3 class="contact-name">Mayrielle Joy Latigo</h3>
-                    <p class="contact-role">IT Student &amp; Web Developer</p>
-                    <ul class="contact-list">
-                        <li>
-                            <span class="contact-icon github"><i class="fab fa-github"></i></span>
-                            <a href="https://github.com/Emj4yy" target="_blank">github.com/Emj4yy</a>
-                        </li>
-                        <li>
-                            <span class="contact-icon email"><i class="far fa-envelope"></i></span>
-                            <a href="mailto:mayriellej@gmail.com">mayriellej@gmail.com</a>
-                        </li>
-                        <li>
-                            <span class="contact-icon linkedin"><i class="fab fa-linkedin-in"></i></span>
-                            <a href="http://linkedin.com/in/mayrielle-joy-latigo-979012379" target="_blank">
-                                linkedin.com/in/mayrielle-joy-latigo-979012379
-                            </a>
-                        </li>
-                        <li>
-                            <span class="contact-icon location"><i class="fas fa-map-marker-alt"></i></span>
-                            Taguig City, Metro Manila
-                        </li>
-                        <li>
-                            <span class="contact-icon phone"><i class="fas fa-phone"></i></span>
-                            <a href="tel:09193364858">09193364858</a>
-                        </li>
-                    </ul>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section reveal">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-center">
+                <div class="contact-card">
+                    <div class="contact-details">
+                        <h3 class="contact-name">Mayrielle Joy Latigo</h3>
+                        <p class="contact-role">IT Student &amp; Web Developer</p>
+                        <ul class="contact-list">
+                            <li>
+                                <span class="contact-icon github"><i class="fab fa-github"></i></span>
+                                <a href="https://github.com/Emj4yy" target="_blank">github.com/Emj4yy</a>
+                            </li>
+                            <li>
+                                <span class="contact-icon email"><i class="far fa-envelope"></i></span>
+                                <a href="mailto:mayriellej@gmail.com">mayriellej@gmail.com</a>
+                            </li>
+                            <li>
+                                <span class="contact-icon linkedin"><i class="fab fa-linkedin-in"></i></span>
+                                <a href="http://linkedin.com/in/mayrielle-joy-latigo-979012379" target="_blank">
+                                    linkedin.com/in/mayrielle-joy-latigo-979012379
+                                </a>
+                            </li>
+                            <li>
+                                <span class="contact-icon location"><i class="fas fa-map-marker-alt"></i></span>
+                                Taguig City, Metro Manila
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-     <!-- Footer -->
-<footer>
-    <div class="footer-main">
-        <div class="footer-brand">
-            <span class="footer-logo">Mayrielle<span class="footer-dot">.</span></span>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-main">
+            <div class="footer-brand">
+                <span class="footer-logo">Mayrielle<span class="footer-dot">.</span></span>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/Emj4yy" class="footer-icon" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:mayriellej@gmail.com" class="footer-icon" aria-label="Email">
+                    <i class="far fa-envelope"></i>
+                </a>
+                <a href="http://linkedin.com/in/mayrielle-joy-latigo-979012379" class="footer-icon" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
         </div>
-        <div class="footer-socials">
-            <a href="https://github.com/Emj4yy" class="footer-icon" target="_blank" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="mailto:mayriellej@gmail.com" class="footer-icon" aria-label="Email">
-                <i class="far fa-envelope"></i>
-            </a>
-            <a href="http://linkedin.com/in/mayrielle-joy-latigo-979012379" class="footer-icon" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mayrielle Joy Latigo. All Rights Reserved.</p>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2025 Mayrielle Joy Latigo. All Rights Reserved.</p>
-    </div>
-</footer>
+    </footer>
 
     <script src="main.js"></script>
 </body>
