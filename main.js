@@ -217,44 +217,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Custom cursor (desktop only)
     if (window.innerWidth > 992) {
         const cursor = document.createElement('div');
-        const cursorFollower = document.createElement('div');
         cursor.className = 'cursor';
-        cursorFollower.className = 'cursor-follower';
         document.body.appendChild(cursor);
-        document.body.appendChild(cursorFollower);
-
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
-
-        // Smooth follower animation
-        function animateFollower() {
-            const distX = mouseX - followerX;
-            const distY = mouseY - followerY;
-            followerX += distX * 0.1;
-            followerY += distY * 0.1;
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
 
         // Hover effect on interactive elements
         const hoverElements = document.querySelectorAll('a, button, .hamburger, .nav-link, .btn, .social-icon, .skill-card');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.classList.add('hover');
-                cursorFollower.classList.add('hover');
             });
             el.addEventListener('mouseleave', () => {
                 cursor.classList.remove('hover');
-                cursorFollower.classList.remove('hover');
             });
         });
     }
