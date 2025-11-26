@@ -304,3 +304,160 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
 });
+
+// Project Gallery Navigation
+function nextImage(button) {
+    const card = button.closest('.project-card');
+    const gallery = card.querySelector('.image-gallery');
+    const images = gallery.querySelectorAll('.gallery-img');
+    const dots = card.querySelector('.gallery-dots');
+    
+    let active = gallery.querySelector('.gallery-img.active');
+    let nextImg = active.nextElementSibling;
+    
+    if (!nextImg) nextImg = images[0];
+    
+    active.classList.remove('active');
+    nextImg.classList.add('active');
+    
+    updateDots(card);
+}
+
+function prevImage(button) {
+    const card = button.closest('.project-card');
+    const gallery = card.querySelector('.image-gallery');
+    const images = gallery.querySelectorAll('.gallery-img');
+    
+    let active = gallery.querySelector('.gallery-img.active');
+    let prevImg = active.previousElementSibling;
+    
+    if (!prevImg) prevImg = images[images.length - 1];
+    
+    active.classList.remove('active');
+    prevImg.classList.add('active');
+    
+    updateDots(card);
+}
+
+function updateDots(card) {
+    const gallery = card.querySelector('.image-gallery');
+    const images = gallery.querySelectorAll('.gallery-img');
+    const dotsContainer = card.querySelector('.gallery-dots');
+    const activeImg = gallery.querySelector('.gallery-img.active');
+    
+    if (dotsContainer.children.length === 0) {
+        images.forEach((img, index) => {
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            if (img === activeImg) dot.classList.add('active');
+            dot.onclick = () => goToImage(card, index);
+            dotsContainer.appendChild(dot);
+        });
+    } else {
+        const dots = dotsContainer.querySelectorAll('.dot');
+        let activeIndex = Array.from(images).indexOf(activeImg);
+        dots.forEach((dot, index) => {
+            dot.classList.remove('active');
+            if (index === activeIndex) dot.classList.add('active');
+        });
+    }
+}
+
+function goToImage(card, index) {
+    const gallery = card.querySelector('.image-gallery');
+    const images = gallery.querySelectorAll('.gallery-img');
+    const active = gallery.querySelector('.gallery-img.active');
+    
+    active.classList.remove('active');
+    images[index].classList.add('active');
+    
+    updateDots(card);
+}
+
+// Initialize gallery dots on page load
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.project-card').forEach(card => {
+        if (card.querySelector('.gallery-dots')) {
+            updateDots(card);
+        }
+    });
+}, { once: true });
+
+// Project Modal Functions
+let currentModalImageIndex = 0;
+let modalImages = [];
+
+function openProjectModal(card) {
+    const projectData = card.querySelector('.project-data');
+    const title = card.querySelector('.project-content h3').textContent;
+    const description = card.querySelector('.project-content p').textContent;
+    const galleryImages = projectData.querySelectorAll('.gallery-images img');
+    const links = projectData.querySelector('.project-links').innerHTML;
+    
+    modalImages = Array.from(galleryImages).map(img => img.src);
+    currentModalImageIndex = 0;
+    
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalLinks').innerHTML = links;
+    
+    // Create thumbnails
+    const thumbnailsContainer = document.querySelector('.modal-thumbnails');
+    thumbnailsContainer.innerHTML = '';
+    modalImages.forEach((img, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = 'modal-thumbnail';
+        if (index === 0) thumbnail.classList.add('active');
+        const img_el = document.createElement('img');
+        img_el.src = img;
+        thumbnail.appendChild(img_el);
+        thumbnail.onclick = () => goToModalImage(index);
+        thumbnailsContainer.appendChild(thumbnail);
+    });
+    
+    document.getElementById('projectModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    displayModalImage();
+}
+
+function closeProjectModal(event) {
+    if (event && event.target.id !== 'projectModal') return;
+    
+    document.getElementById('projectModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function displayModalImage() {
+    document.getElementById('modalImage').src = modalImages[currentModalImageIndex];
+    
+    const thumbnails = document.querySelectorAll('.modal-thumbnail');
+    thumbnails.forEach((thumb, index) => {
+        thumb.classList.remove('active');
+        if (index === currentModalImageIndex) thumb.classList.add('active');
+    });
+}
+
+function nextModalImage() {
+    currentModalImageIndex = (currentModalImageIndex + 1) % modalImages.length;
+    displayModalImage();
+}
+
+function prevModalImage() {
+    currentModalImageIndex = (currentModalImageIndex - 1 + modalImages.length) % modalImages.length;
+    displayModalImage();
+}
+
+function goToModalImage(index) {
+    currentModalImageIndex = index;
+    displayModalImage();
+}
+
+// Keyboard navigation for modal
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('projectModal');
+    if (!modal.classList.contains('active')) return;
+    
+    if (e.key === 'ArrowRight') nextModalImage();
+    if (e.key === 'ArrowLeft') prevModalImage();
+    if (e.key === 'Escape') closeProjectModal();
+});
