@@ -214,28 +214,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
 
-    // Custom cursor (desktop only)
-    if (window.innerWidth > 992) {
-        const cursor = document.createElement('div');
-        cursor.className = 'cursor';
-        document.body.appendChild(cursor);
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Hover effect on interactive elements
-        const hoverElements = document.querySelectorAll('a, button, .hamburger, .nav-link, .btn, .social-icon, .skill-card');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-    }
+    // Custom cursor disabled - using default system cursor
+    // if (window.innerWidth > 992) {
+    //     const cursor = document.createElement('div');
+    //     cursor.className = 'cursor';
+    //     document.body.appendChild(cursor);
+    //
+    //     document.addEventListener('mousemove', (e) => {
+    //         cursor.style.left = e.clientX + 'px';
+    //         cursor.style.top = e.clientY + 'px';
+    //     });
+    //
+    //     // Hover effect on interactive elements
+    //     const hoverElements = document.querySelectorAll('a, button, .hamburger, .nav-link, .btn, .social-icon, .skill-card');
+    //     hoverElements.forEach(el => {
+    //         el.addEventListener('mouseenter', () => {
+    //             cursor.classList.add('hover');
+    //         });
+    //         el.addEventListener('mouseleave', () => {
+    //             cursor.classList.remove('hover');
+    //         });
+    //     });
+    // }
 
     // Add ripple effect on button clicks
     const buttons = document.querySelectorAll('.btn, .social-icon, .footer-icon');
